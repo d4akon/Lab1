@@ -10,7 +10,7 @@
 // Usuwanie elementu HTML ze struktury dokumentu
 //parentElement.removeChild(child), [...]
 
-const inputs = Array.from(document.querySelectorAll("input"));
+var inputs = Array.from(document.querySelectorAll("input"));
 const button = document.querySelector("#count-btn");
 const addButton = document.querySelector("#add-btn");
 const removeButton = document.querySelector("#remove-btn");
@@ -42,27 +42,41 @@ const countMin = () => {
   minResult.textContent = min;
 };
 
-// button.addEventListener("click", () => {
-//   const sum = countSum();
-//   const avg = countAvg(sum);
-//   const max = countMax();
-//   const min = countMin();
-// });
+const calculate = () => {
+  const sum = countSum();
+  const avg = countAvg(sum);
+  const max = countMax();
+  const min = countMin();
+}
 
 inputs.forEach((input) => {
   input.addEventListener("input", () => {
-    const sum = countSum();
-    const avg = countAvg(sum);
-    const max = countMax();
-    const min = countMin();
+    calculate();
   });
 });
+
+const addEvents = () => {
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      calculate();
+    });
+  });
+}
+
 
 addButton.addEventListener("click", () => {
   const newInput = document.createElement("input");
   document.getElementById("myList").appendChild(newInput);
+  inputs = Array.from(document.querySelectorAll("input"));
+  addEvents();
+  calculate();
 });
 
 removeButton.addEventListener("click", () => {
-  document.getElementById("myList").removeChild(newInput);
+  const list = document.getElementById("myList"); 
+  var lastElement = list.lastElementChild;
+  list.removeChild(lastElement);
+  inputs = Array.from(document.querySelectorAll("input"));
+  addEvents();
+  calculate();
 });
