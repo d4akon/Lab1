@@ -10,7 +10,7 @@
 // Usuwanie elementu HTML ze struktury dokumentu
 //parentElement.removeChild(child), [...]
 
-var inputs = Array.from(document.querySelectorAll("input"));
+let inputs = Array.from(document.querySelectorAll("input"));
 const button = document.querySelector("#count-btn");
 const addButton = document.querySelector("#add-btn");
 const removeButton = document.querySelector("#remove-btn");
@@ -47,7 +47,7 @@ const calculate = () => {
   const avg = countAvg(sum);
   const max = countMax();
   const min = countMin();
-}
+};
 
 inputs.forEach((input) => {
   input.addEventListener("input", () => {
@@ -61,8 +61,7 @@ const addEvents = () => {
       calculate();
     });
   });
-}
-
+};
 
 addButton.addEventListener("click", () => {
   const newInput = document.createElement("input");
@@ -73,8 +72,8 @@ addButton.addEventListener("click", () => {
 });
 
 removeButton.addEventListener("click", () => {
-  const list = document.getElementById("myList"); 
-  var lastElement = list.lastElementChild;
+  const list = document.getElementById("myList");
+  let lastElement = list.lastElementChild;
   list.removeChild(lastElement);
   inputs = Array.from(document.querySelectorAll("input"));
   addEvents();
